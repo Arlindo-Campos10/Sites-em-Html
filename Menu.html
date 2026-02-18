@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Interativo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1e1e1e; /* Cor escura igual ao seu VS Code */
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            background: #2d2d2d;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 350px;
+        }
+
+        /* Esconde as seções por padrão */
+        .secao { display: none; }
+        .ativa { display: block; }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007acc;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        button:hover { background-color: #005f99; }
+
+        .btn-voltar { background-color: #555; }
+        .btn-voltar:hover { background-color: #444; }
+
+        a { color: #4fc1ff; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="tela-home" class="secao ativa">
+            <h1>MEU MENU</h1>
+            <button onclick="mudarTela('tela-trimestres')">HOME</button>
+        </div>
+
+        <div id="tela-trimestres" class="secao">
+            <h2>Trimestres</h2>
+            <button onclick="abrirSub('1º Trimestre')">1º Trimestre</button>
+            <button onclick="abrirSub('2º Trimestre')">2º Trimestre</button>
+            <button onclick="abrirSub('3º Trimestre')">3º Trimestre</button>
+            <button onclick="mudarTela('tela-final')">Final</button>
+            <button class="btn-voltar" onclick="mudarTela('tela-home')">Voltar ao Início</button>
+        </div>
+
+        <div id="tela-sub" class="secao">
+            <h2 id="titulo-atual">Trimestre</h2>
+            <p> <a href="T1/t1.html">1º Trimestre</a> </p>
+            <p> <a href="T1/t2.html">1º Trimestre</a> </p>
+            <p> <a href="T1/t3.html">1º Trimestre</a> </p>
+            <p> <a href="T2/t1.html">2º Timestre</a> </p>
+            <p> <a href="T3/#005f99">3º Trimestre</a> </p>
+            <button class="btn-voltar" onclick="mudarTela('tela-trimestres')">Voltar aos Trimestres</button>
+        </div>
+
+        <div id="tela-final" class="secao">
+            <h2>Resultado Final</h2>
+            <p>Conteúdo da conclusão aqui.</p>
+            <button class="btn-voltar" onclick="mudarTela('tela-trimestres')">Voltar</button>
+        </div>
+
+    </div>
+
+    <script>
+        function mudarTela(id) {
+            // Esconde tudo
+            document.querySelectorAll('.secao').forEach(s => s.classList.remove('ativa'));
+            // Mostra a tela escolhida
+            document.getElementById(id).classList.add('ativa');
+        }
+
+        function abrirSub(nome) {
+            document.getElementById('titulo-atual').innerText = nome;
+            mudarTela('tela-sub');
+        }
+    </script>
+
+</body>
+</html>
